@@ -70,6 +70,9 @@ export default {
 		}),
 
 		async getScreenshot() {
+			// Start the timeout now so the screenshot won't be delayed longer than the time
+			setTimeout(() => this.getScreenshot(), this.delay * 1000)
+
 			if (this.currentScene) {
 				try {
 					const {img} = await this.takeScreenshot({
@@ -83,8 +86,6 @@ export default {
 					console.error(error)
 				}
 			}
-
-			setTimeout(() => this.getScreenshot(), this.delay * 1000)
 		}
 	}
 }
